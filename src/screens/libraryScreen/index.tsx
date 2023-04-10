@@ -9,20 +9,16 @@ import {
   RenderItem,
   openWebView,
 } from '../../lib';
-import {ArrivalProps, arrivals, books} from '../../mockData';
+import {ArrivalProps, books} from '../../mockData';
 import {LibraryRoutesParams} from '../../navigation/types';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {html2} from '../../mockData/html';
+import {CommonRoutes} from '../../navigation/routes';
 
 interface Props extends NativeStackScreenProps<LibraryRoutesParams> {}
 
-export const LibraryScreen = ({}: Props) => {
+export const LibraryScreen = ({navigation}: Props) => {
   const openBook = (e: GestureResponderEvent, item: ArrivalProps) => {
-    openWebView({
-      html: item?.html,
-      keyArray: item?.keyArray,
-      goBackTitle: item?.name,
-    });
+    navigation.navigate(CommonRoutes.BOOK_DETAIL, {...item});
   };
 
   return (
@@ -80,8 +76,6 @@ const s = StyleSheet.create({
   },
   renderItem: {
     borderRadius: Theme.sizes.r2,
-    elevation: 2,
-    zIndex: 90,
     justifyContent: 'center',
     alignItems: 'flex-start',
     marginVertical: 8,

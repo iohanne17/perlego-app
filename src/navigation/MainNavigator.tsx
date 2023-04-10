@@ -9,7 +9,7 @@ import {CustomTabbarIcon} from './components/CustomTabbarIcon';
 import {colors} from '../lib/theme';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {CoreRoutesParams} from './types';
-import {BookScreen} from '../screens/bookScreen';
+import {CommonScreens} from './CommonRoutes';
 
 const Tab = createBottomTabNavigator();
 
@@ -26,11 +26,7 @@ const CoreNavigator = () => {
   return (
     <Stack.Navigator screenOptions={options} initialRouteName={CoreRoutes.HOME}>
       <Stack.Screen name={CoreRoutes.HOME} component={MainNavigatorUI} />
-      <Stack.Screen
-        name={CommonRoutes.WEB_VIEW}
-        component={BookScreen}
-        options={{headerShown: true}}
-      />
+      {CommonScreens}
     </Stack.Navigator>
   );
 };

@@ -1,4 +1,5 @@
 import {OpenWebViewProps} from '../lib';
+import {ArrivalProps} from '../mockData';
 
 import {
   CommonRoutes,
@@ -19,6 +20,7 @@ export type MainRoutesParams = {
 
 export type CommonRoutesParams = {
   [CommonRoutes.WEB_VIEW]: OpenWebViewProps;
+  [CommonRoutes.BOOK_DETAIL]: ArrivalProps;
 };
 
 export type DashboardRoutesParams = MainRoutesParams &
@@ -31,4 +33,8 @@ export type LibraryRoutesParams = MainRoutesParams &
     [LibraryRoutes.LIBRARY_MAIN]: undefined;
   };
 
-export type AllRoutesParams = CoreRoutesParams | MainRoutesParams;
+export type AllRoutesParams =
+  | CoreRoutesParams
+  | MainRoutesParams
+  | DashboardRoutesParams
+  | LibraryRoutesParams;

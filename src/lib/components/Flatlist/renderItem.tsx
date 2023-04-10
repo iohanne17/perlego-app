@@ -51,8 +51,6 @@ export const RenderItem = ({
 const s = StyleSheet.create({
   renderItem: {
     borderRadius: Theme.sizes.r2,
-    elevation: 2,
-    zIndex: 90,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     width: 180,

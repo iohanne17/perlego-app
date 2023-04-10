@@ -1,41 +1,3 @@
-export const htmlOne = ` 
-<html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-</head>
-<body
-  style="
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  "
->
-  <button
-  onclick="sendDataToReactNativeApp()"
-    style="
-      padding: 20;
-      width: 200;
-      font-size: 20;
-      color: white;
-      background-color: #6751ff;
-    "
-  >
-    Send Data To React Native App
-  </button>
-  <script>
-    const sendDataToReactNativeApp = async () => {
-      window.ReactNativeWebView.postMessage('Data from WebView / Website');
-    };
-    window.addEventListener("message", message => {
-      alert(message.data) 
-      console.log('--->')
-    });
-  </script>
-</body>
-</html>        
-`;
-
 export const html2 = `
 <html>
   <head>
@@ -50,7 +12,7 @@ export const html2 = `
  </style>
   </head>
   <body>
-  <div id="medicine">
+  <div id="medicine" class="med">
     <h2>Types of Medicine</h2>
     <ul>
       <li>Prescription drugs - Medications that can only be obtained with a prescription from a licensed healthcare provider.</li>
@@ -79,7 +41,7 @@ export const html2 = `
     </div>
     <p>This section describes the different types of medicine that are commonly used to treat various health conditions.</p>
     
-    <div id="manufacturing">
+    <div id="manufacturing" class="med">
     <h2>Medicine Manufacturing</h2>
     <ul>
       <li>Drug discovery and development - The process of identifying and developing new medications.</li>
@@ -98,7 +60,7 @@ export const html2 = `
     </div>
     <p>This section describes the processes involved in the manufacturing, distribution, and regulation of medications.</p>
 
-    <div id="trafficking">
+    <div id="trafficking" class="med">
     <h2>Medicine Trafficking</h2>
     <ul>
     <li>Drug discovery and development - The process of identifying and developing new medications.</li>
@@ -125,7 +87,7 @@ export const html2 = `
     </ul>
     <p>This section describes medicine trafficking.</p>
   </div>
-   <div id="administer">
+   <div id="administer" class="med">
     <h2>Medicine Administering</h2>
     <ul>
     <li>Prescription drugs - Medications that can only be obtained with a prescription from a licensed healthcare provider.</li>
@@ -153,10 +115,27 @@ export const html2 = `
     </div>
     <p>This section describes the different types of ways to administer medicine.</p>
     <script>
-    window.addEventListener("message", message => {
-      const element = document.getElementById(message.data);
-      element.scrollIntoView({ behavior: 'smooth'});
-    });
+      const queries = document.querySelectorAll(".med")
+      const options = {
+        root: null,
+        threshold: 0
+      }
+      const observerCallback = function(entries) {
+        // isIntersecting is true when element and viewport are overlapping
+        // isIntersecting is false when element and viewport don't overlap
+        entries.forEach(entry => {
+          if(entry.isIntersecting === true){
+            window.ReactNativeWebView.postMessage(entry.target.id);
+          }
+        })
+      }
+      var observer = new IntersectionObserver(observerCallback, options);
+      queries.forEach(query => observer.observe(query))
+
+      window.addEventListener("message", message => {
+        const element = document.getElementById(message.data);
+        element.scrollIntoView({ behavior: 'smooth'});
+      }, true);
     </script>
 </body>
 </html>

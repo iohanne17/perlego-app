@@ -1,13 +1,6 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useEffect, useMemo, useRef, useState} from 'react';
-import {
-  BackHandler,
-  InteractionManager,
-  Linking,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {BackHandler, InteractionManager, StyleSheet, View} from 'react-native';
 import WebView from 'react-native-webview';
 import {
   WebViewErrorEvent,
@@ -17,6 +10,7 @@ import {SCREEN_HEIGHT} from '../../lib/theme';
 import {CommonRoutes} from '../../navigation/routes';
 import {CommonRoutesParams} from '../../navigation/types';
 import {Button, HeaderLayout, Loader} from '../../lib';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 type TProps = NativeStackScreenProps<CommonRoutesParams, CommonRoutes.WEB_VIEW>;
 
@@ -32,6 +26,7 @@ export const BookScreen: React.FC<TProps> = React.memo(props => {
     index,
   }));
   const [currentIndex, setcurrentIndex] = useState<number>(0);
+  const insets = useSafeAreaInsets();
 
   useEffect(() => {
     const subscription = BackHandler.addEventListener(
@@ -49,12 +44,16 @@ export const BookScreen: React.FC<TProps> = React.memo(props => {
 
   function onMessage(data: any) {
     console.log('i was triggered', data.nativeEvent.data);
+    //currentindex into result from the html
+    const index = keyArray?.findIndex(el => el === data.nativeEvent.data) || 0;
+    setcurrentIndex(index);
   }
 
   function next() {
     if (keyArray && currentIndex === keyArray?.length - 1) return;
     const newIdx = currentIndex + 1;
     const obj = indexes?.find((el, idx) => idx === newIdx);
+    console.log('----->>>>', currentIndex, obj);
     if (obj) {
       webviewRef.current?.postMessage(obj?.id);
       setcurrentIndex(obj?.index);
@@ -87,7 +86,7 @@ export const BookScreen: React.FC<TProps> = React.memo(props => {
       <WebView
         ref={webviewRef}
         allowsBackForwardNavigationGestures
-        javaScriptEnabled
+        javaScriptEnabled={true}
         onMessage={onMessage}
         startInLoadingState
         renderLoading={WebLoader}
@@ -97,7 +96,7 @@ export const BookScreen: React.FC<TProps> = React.memo(props => {
         style={s.flex}
         {...rest}
       />
-      <View style={s.buttonContainer}>
+      <View style={[s.buttonContainer, {marginBottom: insets.bottom + 10}]}>
         <Button
           onPress={previous}
           type={'icon'}

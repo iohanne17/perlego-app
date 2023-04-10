@@ -4,6 +4,7 @@ import {
   Pressable,
   StyleProp,
   StyleSheet,
+  TextStyle,
   TouchableOpacityProps,
   View,
   ViewStyle,
@@ -36,6 +37,7 @@ export interface MainButtonProps extends TouchableOpacityProps {
   iconName?: string;
   iconSize?: number;
   iconColor?: string;
+  textStyle?: StyleProp<TextStyle>;
 }
 export const Button = ({
   disabled,
@@ -49,13 +51,14 @@ export const Button = ({
   iconColor = colors.primary,
   iconName = 'home',
   iconSize,
+  textStyle,
   ...touchableProps
 }: MainButtonProps) => {
   const disabledStyle = disabled ? 'disabled' : 'enabled';
 
   const contentType =
     type === 'text' ? (
-      <Text text style={titleStyle[scheme]}>
+      <Text text style={[titleStyle[scheme], textStyle]}>
         {title}
       </Text>
     ) : (
@@ -73,8 +76,9 @@ export const Button = ({
   return (
     <Pressable
       onPress={onPress}
-      style={[
+      style={({pressed}) => [
         s.main,
+        {opacity: pressed ? 0.5 : 1},
         buttonSizeStyle[sizeScheme],
         buttonStyle[scheme][disabledStyle],
         style,
@@ -115,11 +119,9 @@ const buttonStyle = {
   [MB_SCHEME.main]: {
     enabled: {
       borderRadius: Theme.sizes.r4,
-      opacity: 1,
     },
     disabled: {
       borderRadius: Theme.sizes.r4,
-      opacity: 0.6,
     },
   },
 };

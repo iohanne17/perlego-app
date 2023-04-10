@@ -40,6 +40,7 @@ export const HeaderLayout: React.FC<Props> = ({
 
   useLayoutEffect(() => {
     navigation.setOptions({
+      headerShadowVisible: false,
       headerStyle: {
         backgroundColor: colors.inverseWhite100,
       },

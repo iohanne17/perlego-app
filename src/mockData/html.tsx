@@ -56,6 +56,18 @@ export const html2 = `
       <li>Drug recalls - The process of removing a medication from the market due to safety concerns or other issues.</li>
       <li>Prescription drugs - Medications that can only be obtained with a prescription from a licensed healthcare provider.</li>
       <li>Over-the-counter drugs - Medications that can be purchased without a prescription.</li>
+      <li>Drug discovery and development - The process of identifying and developing new medications.</li>
+      <li>Clinical trials - Studies conducted to test the safety and efficacy of new medications.</li>
+      <li>FDA approval process - The regulatory process in the United States for approving new medications for sale.</li>
+      <li>Manufacturing and quality control - The processes involved in producing medications and ensuring they meet quality standards.</li>
+      <li>Packaging and labeling - The processes of packaging medications and providing information on labels about their contents and use.</li>
+      <li>Distribution and supply chain - The processes involved in getting medications from manufacturers to pharmacies and other healthcare providers.</li>
+      <li>Drug shortages - A situation in which a medication is in short supply, often due to manufacturing or other issues.</li>
+      <li>Counterfeit drugs - Medications that are fake or not produced by the manufacturer they claim to be from.</li>
+      <li>Medication errors - Mistakes that can occur during any part of the medication process, from prescribing to administering.</li>
+      <li>Drug recalls - The process of removing a medication from the market due to safety concerns or other issues.</li>
+      <li>Prescription drugs - Medications that can only be obtained with a prescription from a licensed healthcare provider.</li>
+      <li>Over-the-counter drugs - Medications that can be purchased without a prescription.</li>
     </ul>
     </div>
     <p>This section describes the processes involved in the manufacturing, distribution, and regulation of medications.</p>

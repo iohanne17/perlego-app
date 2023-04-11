@@ -127,27 +127,7 @@ export const html2 = `
     </div>
     <p>This section describes the different types of ways to administer medicine.</p>
     <script>
-      const queries = document.querySelectorAll(".med")
-      const options = {
-        root: null,
-        threshold: 0
-      }
-      const observerCallback = function(entries) {
-        // isIntersecting is true when element and viewport are overlapping
-        // isIntersecting is false when element and viewport don't overlap
-        entries.forEach(entry => {
-          if(entry.isIntersecting === true){
-            window.ReactNativeWebView.postMessage(entry.target.id);
-          }
-        })
-      }
-      var observer = new IntersectionObserver(observerCallback, options);
-      queries.forEach(query => observer.observe(query))
-
-      window.addEventListener("message", message => {
-        const element = document.getElementById(message.data);
-        element.scrollIntoView({ behavior: 'smooth'});
-      }, true);
+    
     </script>
 </body>
 </html>

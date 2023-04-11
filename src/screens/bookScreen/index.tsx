@@ -28,6 +28,30 @@ export const BookScreen: React.FC<TProps> = React.memo(props => {
   const [currentIndex, setcurrentIndex] = useState<number>(0);
   const insets = useSafeAreaInsets();
 
+  const jsScript = `
+  const queries = document.querySelectorAll(".med")
+  const options = {
+    root: null,
+    threshold: 0
+  }
+  const observerCallback = function(entries) {
+    // isIntersecting is true when element and viewport are overlapping
+    // isIntersecting is false when element and viewport don't overlap
+    entries.forEach(entry => {
+      if(entry.isIntersecting === true){
+        window.ReactNativeWebView.postMessage(entry.target.id);
+      }
+    })
+  }
+  var observer = new IntersectionObserver(observerCallback, options);
+  queries.forEach(query => observer.observe(query))
+
+  window.addEventListener("message", message => {
+    const element = document.getElementById(message.data);
+    element.scrollIntoView({ behavior: 'smooth'});
+  }, true);
+  `;
+
   useEffect(() => {
     const subscription = BackHandler.addEventListener(
       'hardwareBackPress',
@@ -88,10 +112,12 @@ export const BookScreen: React.FC<TProps> = React.memo(props => {
         onMessage={onMessage}
         startInLoadingState
         renderLoading={WebLoader}
+        injectedJavaScript={jsScript}
         onError={handleError}
         onHttpError={handleError}
         source={{html}}
         style={s.flex}
+        useWebView2={true}
         {...rest}
       />
       <View style={[s.buttonContainer, {marginBottom: insets.bottom + 10}]}>

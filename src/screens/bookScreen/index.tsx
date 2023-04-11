@@ -43,7 +43,6 @@ export const BookScreen: React.FC<TProps> = React.memo(props => {
   }, []);
 
   function onMessage(data: any) {
-    console.log('i was triggered', data.nativeEvent.data);
     //currentindex into result from the html
     const index = keyArray?.findIndex(el => el === data.nativeEvent.data) || 0;
     setcurrentIndex(index);
@@ -53,7 +52,6 @@ export const BookScreen: React.FC<TProps> = React.memo(props => {
     if (keyArray && currentIndex === keyArray?.length - 1) return;
     const newIdx = currentIndex + 1;
     const obj = indexes?.find((el, idx) => idx === newIdx);
-    console.log('----->>>>', currentIndex, obj);
     if (obj) {
       webviewRef.current?.postMessage(obj?.id);
       setcurrentIndex(obj?.index);

@@ -9,7 +9,7 @@ export const books: ArrivalProps[] = [
     image: 'https://source.unsplash.com/user/c_v_r',
     html: html2,
     summary: `The Call of Cthulhu chronicles Francis Wayland Thurston as he goes through notes of his dead uncle and other accounts of a mysterious cult. The cult worships Cthulhu, a monstrous human, octopus, dragon hybrid that lives in the sunken corpse city of Rlyeh, who's dreams influence reality.`,
-    keyArray: [''],
+    keyArray: ['medicine', 'manufacturing', 'trafficking', 'administer'],
   },
   {
     id: '1',
@@ -29,7 +29,7 @@ export const books: ArrivalProps[] = [
     html: html2,
     summary:
       'A house-elf warns Harry against returning to Hogwarts, but he decides to ignore it. When students and creatures at the school begin to get petrified, Harry finds himself surrounded in mystery.',
-    keyArray: [''],
+    keyArray: ['medicine', 'manufacturing', 'trafficking', 'administer'],
   },
   {
     id: '3',
@@ -39,7 +39,7 @@ export const books: ArrivalProps[] = [
     html: html2,
     summary:
       'At 33, the age of adulthood among hobbits, Frodo Baggins receives a magic Ring of Invisibility from his uncle Bilbo. Frodo, a Christlike figure, learns that the ring has the power to control the entire world and, he discovers, to corrupt its owner. A fellowship of hobbits, elves, dwarfs, and men is formed to destroy the ring by casting it into the volcanic fires of the Crack of Doom, where it was forged. They are opposed on their harrowing mission by the evil Sauron and his Black Riders.',
-    keyArray: [''],
+    keyArray: ['medicine', 'manufacturing', 'trafficking', 'administer'],
   },
   {
     id: '4',
@@ -48,7 +48,7 @@ export const books: ArrivalProps[] = [
     image: 'https://source.unsplash.com/user/c_v_r',
     html: html2,
     summary: `Bella Swan, a teenage girl, and Edward Cullen, a vampire, respectively, and focuses on the development of Bella and Edward's relationship and the subsequent efforts of Edward and his family to keep Bella safe from another coven of vampires.`,
-    keyArray: [''],
+    keyArray: ['medicine', 'manufacturing', 'trafficking', 'administer'],
   },
   {
     id: '5',
@@ -58,6 +58,6 @@ export const books: ArrivalProps[] = [
     html: html2,
     summary:
       'The tribal people in a remote African desert live a happy life, but it is all torn to pieces when a Coca-Cola bottle falls from a plane. With the villagers fighting over the strange foreign object, tribal leader Xi (N!xau) decides to take the bottle back to the gods to restore peace. His journey to the "end of the world" eventually has him crossing paths with a bumbling scientist (Marius Weyers) and a band of guerrillas who take a schoolteacher (Sandra Prinsloo) and her class hostage.',
-    keyArray: [''],
+    keyArray: ['medicine', 'manufacturing', 'trafficking', 'administer'],
   },
 ];
